@@ -7,6 +7,7 @@ pokemon = 0
 COLOR 15
 PRINT "Prof. Oak: What is your name?"
 INPUT "Name"; name$
+IF name$ = "" THEN name$ = "???"
 CLS
 PRINT "Ah! So, your name is "; name$; "!"
 PRINT
@@ -53,7 +54,7 @@ RETURN 'exit
 DO UNTIL action$ = "exit"
     CLS
     COLOR 15
-    IF pokemon = 0 THEN PRINT "Mom: "; name$; "! Professor Oak wanted to see you. Head to his lab."
+    IF p1 = 0 THEN PRINT "Mom: "; name$; "! Professor Oak wanted to see you. Head to his lab."
     PRINT "You are on the main floor of your house.";
     COLOR 10
     PRINT , "stairs   door   exit"
@@ -69,12 +70,13 @@ DO UNTIL action$ = "exit"
     COLOR 15
     PRINT "You are in Pallet Town.";
     COLOR 10
-    PRINT , "garys_house   home   lab   route_1   exit"
+    PRINT , "| garys house | home | lab | route 1 | exit"
     INPUT "Enter Choice"; action$
+    COLOR 15
     IF action$ = "home" THEN GOSUB 2
-    IF action$ = "garys_house" THEN GOSUB 4
+    IF action$ = "garys house" THEN GOSUB 4
     IF action$ = "lab" THEN GOSUB 5
-    IF action$ = "route_1" THEN GOSUB 6
+    IF action$ = "route 1" THEN GOSUB 6
 LOOP
 GOSUB 0 'Exit
 
@@ -84,11 +86,12 @@ SLEEP
 RETURN
 
 5 'Oak's Lab
-IF pokemon = 0 THEN GOSUB 5.1 'first pokemon
-IF NOT pokemon = 0 THEN GOSUB 5.2 'normal lab
+IF p1 = 0 THEN GOSUB 5.1 'first pokemon
+IF NOT p1 = 0 THEN GOSUB 5.2 'normal lab
 
 
 5.1 'first pokemon
+CLS
 PRINT "Prof. Oak: There you are "; name$; "!"
 SLEEP
 CLS
@@ -96,8 +99,7 @@ PRINT "Prof. Oak: I need to  give you something."
 SLEEP
 CLS
 PRINT name$; " recived Pikachu!"
-pokemon = 1
-party1 = 25
+p1 = 25
 SLEEP
 CLS
 PRINT "Prof. Oak: Now you can go to route 1, "; name$; "!"
@@ -125,11 +127,28 @@ GOSUB 0 'exit
 DO UNTIL action$ = "exit"
     CLS
     COLOR 15
-    PRINT "Gandolf: YOU SHALL NOT PASS!"
-    PRINT "(Area under development)";
+    PRINT "Sign:"
+    PRINT "Wild Pokemon may appear in the tall grass.";
     COLOR 10
-    PRINT , "back   exit"
+    PRINT , "| back to town  |  enter tall grass |  exit"
     INPUT "Enter Choice"; action$
-    IF action$ = "back" THEN GOSUB 3
+    IF action$ = "back to town" THEN GOSUB 3
+    IF action$ = "enter tall grass" THEN GOSUB 7
 LOOP
 GOSUB 0 'exit
+
+8 'Viridian City
+CLS
+PRINT "There are many construction vehicles around. You can't go here yet."
+SLEEP
+GOSUB 6
+7 'wild pokemon
+pokemon% = INT(RND * 2) + 1 'add one as INT value never reaches 2
+IF pokemon% = 1 THEN GOSUB 8
+IF pokemon% = 2 THEN GOSUB 7.1
+
+7.1 'Wild Battle
+CLS
+PRINT "You Won the battle!"
+SLEEP
+GOSUB 8
