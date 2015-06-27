@@ -2,9 +2,58 @@ REM Textemon
 REM By Hyperdriveguy
 _FULLSCREEN
 
+dmy$ = INKEY$
+
+menu = 0
+arrowpos = 1
+
+CLS
+
+PRINT "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"
+PRINT "º        New Game          º"
+PRINT "º                          º"
+PRINT "º          Quit            º"
+PRINT "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼"
+
+LOCATE 2, 5
+PRINT "¯"
+dmy$ = INKEY$
+.1 'menu
+DO UNTIL _KEYDOWN(13)
+    IF _KEYDOWN(20480) AND _KEYDOWN(18432) THEN SLEEP
+    IF _KEYDOWN(18432) AND arrowpos = 2 THEN GOSUB .2 'position 1
+    IF _KEYDOWN(20480) AND arrowpos = 1 THEN GOSUB .3 'position 2
+LOOP
+GOSUB .4 'main game
+
+.2 'position 1
+LOCATE 2, 5
+PRINT "¯"
+LOCATE 4, 5
+PRINT " "
+arrowpos = 1
+GOSUB .1 'menu
+
+.3 'position 2
+LOCATE 4, 5
+PRINT "¯"
+LOCATE 2, 5
+PRINT " "
+arrowpos = 2
+GOSUB .1 'menu
+
+.4 'main game
+
+IF arrowpos = 2 THEN menu = 1
+IF menu = 1 THEN END
+IF arrowpos = 1 THEN menu = 2
+
 pokemon = 0
 
+dmy$ = INKEY$
+
 COLOR 15
+CLS
 PRINT "Prof. Oak: What is your name?"
 INPUT "Name"; name$
 IF name$ = "" THEN name$ = "???"
@@ -35,7 +84,7 @@ SLEEP
 CLS
 action$ = ""
 GOSUB 1 'your room
-0 'exit
+0 'quit game
 END
 
 1 'your room
@@ -48,7 +97,7 @@ DO UNTIL action$ = "exit"
     INPUT "Enter Choice"; action$
     IF action$ = "stairs" THEN GOSUB 2
 LOOP
-RETURN 'exit
+GOSUB 0 'exit
 
 2 'main floor of your house
 DO UNTIL action$ = "exit"
@@ -142,13 +191,12 @@ CLS
 PRINT "There are many construction vehicles around. You can't go here yet."
 SLEEP
 GOSUB 6
+
 7 'wild pokemon
 pokemon% = INT(RND * 2) + 1 'add one as INT value never reaches 2
 IF pokemon% = 1 THEN GOSUB 8
 IF pokemon% = 2 THEN GOSUB 7.1
 
 7.1 'Wild Battle
-CLS
-PRINT "You Won the battle!"
-SLEEP
+
 GOSUB 8
