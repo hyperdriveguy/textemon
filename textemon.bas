@@ -9,11 +9,11 @@ arrowpos = 1
 
 CLS
 
-PRINT "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»"
-PRINT "º        New Game          º"
-PRINT "º                          º"
-PRINT "º          Quit            º"
-PRINT "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼"
+PRINT "+-------------------------+"
+PRINT "|        New Game         ||"
+PRINT "|          Quit           ||"
+PRINT "+-------------------------+"
+PRINT " -------------------------"
 
 LOCATE 2, 5
 PRINT "¯"
