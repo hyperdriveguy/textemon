@@ -9,11 +9,11 @@ arrowpos = 1
 
 CLS
 
-PRINT "+-------------------------+"
+PRINT "+-------------------------++"
 PRINT "|        New Game         ||"
 PRINT "|          Quit           ||"
-PRINT "+-------------------------+"
-PRINT " -------------------------"
+PRINT "+-------------------------+|"
+PRINT " ---------------------------"
 
 LOCATE 2, 5
 PRINT "¯"
@@ -174,6 +174,7 @@ GOSUB 0 'exit
 
 6 'route 1
 DO UNTIL action$ = "exit"
+    prev=6
     CLS
     COLOR 15
     PRINT "Sign:"
@@ -186,17 +187,17 @@ DO UNTIL action$ = "exit"
 LOOP
 GOSUB 0 'exit
 
-8 'Viridian City
+7 'Viridian City
 CLS
 PRINT "There are many construction vehicles around. You can't go here yet."
 SLEEP
 GOSUB 6
 
-7 'wild pokemon
+.5 'wild pokemon
 pokemon% = INT(RND * 2) + 1 'add one as INT value never reaches 2
-IF pokemon% = 1 THEN GOSUB 8
-IF pokemon% = 2 THEN GOSUB 7.1
+IF pokemon% = 1 THEN GOSUB (prev+1)
+IF pokemon% = 2 THEN GOSUB .51
 
-7.1 'Wild Battle
-
-GOSUB 8
+.51 'Wild Battle
+IF prev=6 THEN
+    GOSUB 7
