@@ -79,7 +79,7 @@ CLS
 PRINT name$; ", the champion, the best of them all!"
 PRINT "Go forward!"
 PRINT
-PRINT "Press any key to continue..."
+PRINT ,"Press any key to continue..."
 SLEEP
 CLS
 action$ = ""
@@ -199,5 +199,16 @@ IF pokemon% = 1 THEN GOSUB (prev+1)
 IF pokemon% = 2 THEN GOSUB .51
 
 .51 'Wild Battle
+CLS
+PRINT ," ^^^^^^^^^^^^^^^^^ "
+PRINT ,"<                 >"
+PRINT ,"<     BATTLE!     >"
+PRINT ,"<                 >"
+PRINT ," ^^^^^^^^^^^^^^^^^ "
+SLEEP 1
+CLS
+PRINT ,"Battle system not implemented yet."
+SLEEP 2
+CLS
 IF prev=6 THEN
     GOSUB 7
