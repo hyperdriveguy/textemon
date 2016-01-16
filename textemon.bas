@@ -1,6 +1,6 @@
 REM Textemon
 REM By Hyperdriveguy
-_FULLSCREEN
+DIM party(6) as Integer
 
 dmy$ = INKEY$
 
@@ -103,7 +103,7 @@ GOSUB 0 'exit
 DO UNTIL action$ = "exit"
     CLS
     COLOR 15
-    IF p1 = 0 THEN PRINT "Mom: "; name$; "! Professor Oak wanted to see you. Head to his lab."
+    IF party(1) = 0 THEN PRINT "Mom: "; name$; "! Professor Oak wanted to see you. Head to his lab."
     PRINT "You are on the main floor of your house.";
     COLOR 10
     PRINT , "stairs   door   exit"
@@ -147,8 +147,8 @@ CLS
 PRINT "Prof. Oak: I need to  give you something."
 SLEEP
 CLS
-PRINT name$; " recived Pikachu!"
-p1 = 25
+PRINT name$; " received Pikachu!"
+party(1) = 25
 SLEEP
 CLS
 PRINT "Prof. Oak: Now you can go to route 1, "; name$; "!"
@@ -174,6 +174,12 @@ GOSUB 0 'exit
 
 6 'route 1
 DO UNTIL action$ = "exit"
+    IF party(1) = 0 THEN
+        Print "Professor Oak: Wait! It's unsafe to go out there alone! Take this Pokemon.
+        Sleep
+        cls
+        Print name$; " received Pikachu!"
+        party(1) = 25
     prev=6
     CLS
     COLOR 15
